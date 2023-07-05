@@ -14,7 +14,7 @@ net_total = data_df["Profit/Losses"].sum()
 
 # calculate change in profit for each month and find average
 data_df["Profit/Losses Change"] = data_df["Profit/Losses"].diff()
-average_change = data_df["Profit/Losses Change"].mean()
+average_change = round(data_df["Profit/Losses Change"].mean(),2)
 
 # find row with max change
 maxrow = data_df["Profit/Losses Change"].idxmax()
@@ -34,4 +34,19 @@ print("Total: $"+str(net_total))
 print("Average Change: $"+str(average_change))
 print("Greatest Increase in Profits: "+max_date+" ($"+str(max_value)+")")
 print("Greatest Decrease in Profits: "+min_date+" ($"+str(min_value)+")")
+
+# print out results to text file
+txtpath = os.path.join('analysis', 'results.txt')
+with open(txtpath, 'w') as f:
+    f.write("Total Months: "+str(total_months))
+    f.write('\n')
+    f.write("Total: $"+str(net_total))
+    f.write('\n')
+    f.write("Average Change: $"+str(average_change))
+    f.write('\n')
+    f.write("Greatest Increase in Profits: "+max_date+" ($"+str(max_value)+")")
+    f.write('\n')
+    f.write("Greatest Decrease in Profits: "+min_date+" ($"+str(min_value)+")")
+
+
 

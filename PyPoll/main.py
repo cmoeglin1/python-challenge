@@ -32,3 +32,15 @@ for x in range(counts_df["Name"].count()):
 print("-----------------")
 print("Winner: "+counts_df["Name"].iloc[0])
 print("-----------------")
+
+# print out results to txt file
+txtpath = os.path.join('analysis', 'results.txt')
+with open(txtpath, 'w') as f:
+    f.write("Total Votes: "+str(total_votes))
+    f.write('\n')
+    for x in range(counts_df["Name"].count()):
+        f.write(counts_df["Name"].iloc[x] + ": "+ str(counts_df["Percentage"].iloc[x]) + "% ("+ str(counts_df["Votes"].iloc[x]) + ")")
+        f.write('\n')
+    f.write("-----------------")
+    f.write('\n')
+    f.write("Winner: "+counts_df["Name"].iloc[0])
